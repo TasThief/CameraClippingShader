@@ -89,7 +89,7 @@
 				return lerp(
 					tex2D(_BaseTex, float2(i.uv.x, 1 - i.uv.y)), 
 					tex2D(_MainTex, i.uv), 
-					clamp((1 - (1 - clamp(tanh((sqrt((pow((i.projPos.x - 0.5), 2) * _MainTex_TexelSize.z / _MainTex_TexelSize.w*1.75) + (pow((i.projPos.y - 0.5), 2)))*_Size) - _Smooth), 0, 1))*(clamp(tanh((1 - (Linear01Depth(tex2Dproj(_CameraDepthTexture, UNITY_PROJ_COORD(i.projPos)).r))) - _CarveDepth)*pow(_CarveSmooth, 2), 0, 1)))+_MaxAlphaValue,0,1));
+					clamp((1 - (1 - clamp(tanh((sqrt((((i.projPos.x - 0.5)*(i.projPos.x - 0.5)) * _MainTex_TexelSize.z / _MainTex_TexelSize.w*1.75) + ((i.projPos.y - 0.5)*(i.projPos.y - 0.5)))*_Size) - _Smooth), 0, 1))*(clamp(tanh((1 - (Linear01Depth(tex2Dproj(_CameraDepthTexture, UNITY_PROJ_COORD(i.projPos)).r))) - _CarveDepth)*(_CarveSmooth*_CarveSmooth), 0, 1)))+_MaxAlphaValue,0,1));
             }
 				ENDCG
 		}
