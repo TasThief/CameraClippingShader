@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+[ExecuteInEditMode]
 public class CameraMask : MonoBehaviour {
 
     //The shader effect
@@ -19,7 +19,10 @@ public class CameraMask : MonoBehaviour {
     private float carveDepth;
 
     [SerializeField][Range(0.0001f, 50)]
-    private float carveSmoth;
+    private float carveSmooth;
+
+    [SerializeField] [Range(0, 1)]
+    private float maxAlphaValue;
 
     [SerializeField]
     private Camera baseCamera;
@@ -61,7 +64,9 @@ public class CameraMask : MonoBehaviour {
 
         mat.SetFloat("_CarveDepth", carveDepth);
 
-        mat.SetFloat("_CarveSmooth", carveSmoth);
+        mat.SetFloat("_CarveSmooth", carveSmooth);
+
+        mat.SetFloat("_MaxAlphaValue", maxAlphaValue);
     }
 
 
